@@ -3,6 +3,7 @@ import './App.css';
 import TaskForm from './components/TaskForm';
 import Control from './components/Control';
 import TaskList from './components/TaskList';
+import _ from 'lodash';
 
 class App extends React.Component {
     constructor(props) {
@@ -82,7 +83,10 @@ class App extends React.Component {
     
     onUpdateStatus = (id) => {
         var { tasks } = this.state;
-        var index = this.findIndex(id);
+        // var index = this.findIndex(id);
+        var index = _.findIndex(tasks, (task) => {
+            return task.id === id;
+        });
         if(index !== -1){
             tasks[index].status = !tasks[index].status;
             this.setState({
